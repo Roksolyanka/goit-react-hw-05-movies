@@ -1,16 +1,53 @@
-export const App = () => {
+import React, { Suspense } from 'react';
+import { MagnifyingGlass } from 'react-loader-spinner';
+import { Route, NavLink, Routes, Navigate } from 'react-router-dom';
+
+const Home = React.lazy(() => import('../pages/Home'));
+const Movies = React.lazy(() => import('../pages/Movies'));
+const MovieDetails = React.lazy(() => import('../pages/MovieDetails'));
+const Cast = React.lazy(() => import('../pages/Cast'));
+const Reviews = React.lazy(() => import('../pages/Reviews'));
+
+const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <header>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="/movies">Movies</NavLink>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <Suspense
+        fallback={
+          <MagnifyingGlass
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="MagnifyingGlass-loading"
+            wrapperStyle={{}}
+            wrapperClass="MagnifyingGlass-wrapper"
+            glassColor="#c0efff"
+            color="#e15b64"
+          />
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieId//*" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 };
+export default App;
