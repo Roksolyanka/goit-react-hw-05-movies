@@ -1,18 +1,24 @@
-const API_KEY = 'a9909d47681c6b09be18c529deedffef';
-const BASE_URL = 'https://api.themoviedb.org/3/';
+// const API_KEY = 'a9909d47681c6b09be18c529deedffef';
+// const BASE_URL = 'https://api.themoviedb.org/3/';
+
+// export const fetchMovieData = async movieId => {
+//   const response = await fetch(
+//     `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`
+//   );
+
+//   return response;
+// };
+
+
+
+
 
 // export const fetchPosts = async () => {
 //   const { data } = await axios.get(`${BASE_URL}/posts`);
 //   return data;
 // };
 
-export const fetchMovieData = async movieId => {
-  const response = await fetch(
-    `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`
-  );
 
-  return response;
-};
 
 // export const fetchPostComments = async movieId => {
 //   const { data } = await axios.get(`${BASE_URL}/posts/${movieId}/comments`);

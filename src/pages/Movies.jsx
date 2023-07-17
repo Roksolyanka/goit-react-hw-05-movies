@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import API_KEY from 'components/config';
+import { Suspense, lazy, useState } from 'react';
+import { MagnifyingGlass } from 'react-loader-spinner';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+
+const MovieSearchResult = lazy(() => import('./MovieSearchResult'));
 
 const Movies = () => {
   const [search, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const location = useLocation();
+  const navigate = useNavigate();
 
   const onChange = event => {
     setSearch(event.target.value);
@@ -13,16 +14,8 @@ const Movies = () => {
 
   const handleSearch = async event => {
     event.preventDefault();
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${search}&api_key=${API_KEY}`
-      );
-      const data = await response.json();
-      setSearchResults(data.results);
-    } catch (error) {
-      console.log('Error searching movies:', error);
-    }
-    // setSearch('');
+    navigate(`/movies?query=${search}`);
+    setSearch('');
   };
 
   return (
@@ -42,19 +35,25 @@ const Movies = () => {
           onChange={onChange}
         />
       </form>
-      {searchResults.length > 0 && (
-        <div>
-          <ul>
-            {searchResults.map(movie => (
-              <li key={movie.id}>
-                <Link state={{ from: location }} to={`/movies/${movie.id}`}>
-                  {movie.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <Suspense
+        fallback={
+          <MagnifyingGlass
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="MagnifyingGlass-loading"
+            wrapperStyle={{}}
+            wrapperClass="MagnifyingGlass-wrapper"
+            glassColor="#c0efff"
+            color="#e15b64"
+          />
+        }
+      >
+        <Routes>
+          <Route path="/" element={<MovieSearchResult />} />
+          <Route path="search" element={<MovieSearchResult />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 };
@@ -71,3 +70,20 @@ export default Movies;
                 </Link> */
 
 /* <Link to={`/movies/${movie.id}`}>{movie.title}</Link> */
+
+
+      
+        /* {searchResults.length > 0 && (
+        <div>
+          <ul>
+            {searchResults.map(movie => (
+              <li key={movie.id}>
+                <Link state={{ from: location }} to={`/movies/${movie.id}`}>
+                  {movie.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )} */
+      

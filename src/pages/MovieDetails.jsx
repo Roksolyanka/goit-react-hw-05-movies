@@ -83,7 +83,7 @@ const MovieDetails = () => {
         <Routes>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
-        </Routes>{' '}
+        </Routes>
       </Suspense>
     </div>
   );
