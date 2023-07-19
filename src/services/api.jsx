@@ -17,7 +17,7 @@ export async function fetchTrendingMovies() {
 export async function fetchMovieDetails(movieId) {
   try {
     const response = await fetch(
-      `${BASE_URL}movie/${movieId}?api_key=${API_KEY}`
+      `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`
     );
     const data = await response.json();
     return data;
@@ -30,7 +30,7 @@ export async function fetchMovieDetails(movieId) {
 export async function fetchMovieCast(movieId) {
   try {
     const response = await fetch(
-      `${BASE_URL}movie/${movieId}/credits?api_key=${API_KEY}`
+      `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
     );
     const data = await response.json();
     return data.cast;
@@ -43,7 +43,7 @@ export async function fetchMovieCast(movieId) {
 export async function fetchMovieReviews(movieId) {
   try {
     const response = await fetch(
-      `${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}`
+      `${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`
     );
     const data = await response.json();
     return data.results;
