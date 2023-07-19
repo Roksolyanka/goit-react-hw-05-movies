@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { useParams, Link, Routes, Route, useLocation } from 'react-router-dom';
-import API_KEY from 'components/config';
+import { fetchMovieDetails } from 'services/api';
 import { MagnifyingGlass } from 'react-loader-spinner';
 
 const Cast = lazy(() => import('./Cast'));
@@ -13,19 +13,12 @@ const MovieDetails = () => {
   const backLinkHref = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
-    const fetchMovieDetails = async () => {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3//movie/${movieId}?api_key=${API_KEY}`
-        );
-        const data = await response.json();
-        setMovie(data);
-      } catch (error) {
-        console.log('Error fetching movie details:', error);
-      }
+    const getMovieDetails = async () => {
+      const fetchDetailsOfMovie = await fetchMovieDetails(movieId);
+      setMovie(fetchDetailsOfMovie);
     };
 
-    fetchMovieDetails();
+    getMovieDetails();
   }, [movieId]);
 
   if (!movie) {

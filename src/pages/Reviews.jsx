@@ -1,25 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import API_KEY from 'components/config';
+import { fetchMovieReviews } from 'services/api';
 
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const fetchMovieReviews = async () => {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3//movie/${movieId}/reviews?api_key=${API_KEY}`
-        );
-        const data = await response.json();
-        setReviews(data.results);
-      } catch (error) {
-        console.log('Error fetching movie reviews:', error);
-      }
+    const getMovieReviews = async () => {
+      const fetchReviews = await fetchMovieReviews(movieId);
+      setReviews(fetchReviews);
     };
 
-    fetchMovieReviews();
+    getMovieReviews();
   }, [movieId]);
 
   return (

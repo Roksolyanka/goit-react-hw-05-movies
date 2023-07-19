@@ -1,25 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import API_KEY from 'components/config';
+import { fetchMovieCast } from 'services/api';
 
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    const fetchMovieCast = async () => {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3//movie/${movieId}/credits?api_key=${API_KEY}`
-        );
-        const data = await response.json();
-        setCast(data.cast);
-      } catch (error) {
-        console.log('Error fetching movie credits:', error);
-      }
+    const getMovieCast = async () => {
+      const fetchCast = await fetchMovieCast(movieId);
+      setCast(fetchCast);
     };
 
-    fetchMovieCast();
+    getMovieCast();
   }, [movieId]);
 
   return (

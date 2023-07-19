@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import API_KEY from 'components/config';
+import { fetchMovieSearch } from 'services/api';
 
 const MovieSearchResult = () => {
   const [searchResults, setSearchResults] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
-    const handleSearch = async () => {
+    const getMovieSearch = async () => {
       try {
         const queryParams = new URLSearchParams(location.search);
         const query = queryParams.get('query');
 
         if (query) {
-          const response = await fetch(
-            `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${API_KEY}`
-          );
-          const data = await response.json();
-          setSearchResults(data.results);
+          const fetchSearchResult = await fetchMovieSearch(query);
+          setSearchResults(fetchSearchResult);
         }
       } catch (error) {
         console.log('Error searching movies:', error);
       }
     };
 
-    handleSearch();
+    getMovieSearch();
   }, [location.search]);
 
   return (
