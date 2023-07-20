@@ -23,6 +23,8 @@ const MovieSearchResult = () => {
         if (query) {
           const fetchSearchResult = await fetchMovieSearch(query);
           setSearchResults(fetchSearchResult);
+        } else {
+          setSearchResults([]);
         }
       } catch (error) {
         console.log('Error searching movies:', error);
@@ -38,6 +40,7 @@ const MovieSearchResult = () => {
 
   return (
     <SearchResultContainer>
+      {/* {searchResults.length > 0 ? ( */}
       <div>
         <SearchResultList>
           {searchResults.map(movie => (
@@ -59,6 +62,9 @@ const MovieSearchResult = () => {
           ))}
         </SearchResultList>
       </div>
+      {/* ) : (
+        <p>No movies found.</p>
+      )}  */}
     </SearchResultContainer>
   );
 };

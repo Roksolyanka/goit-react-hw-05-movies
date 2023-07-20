@@ -22,8 +22,9 @@ const Movies = () => {
 
   const handleSearch = async event => {
     event.preventDefault();
-    navigate(`/movies?query=${search}`);
-    setSearch('');
+    const searchTrim = search.trim();
+    navigate(`/movies?query=${searchTrim}`);
+    setSearch(searchTrim);
   };
 
   return (
