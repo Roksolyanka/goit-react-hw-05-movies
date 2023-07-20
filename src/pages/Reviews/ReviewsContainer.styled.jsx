@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const ReviewsContainer = styled.div`
-  padding-top: 20px;
-  padding-left: 60px;
+  padding: 15px;
 `;
 
 export const ReviewsList = styled.ul`

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const Header = styled.header`
   width: 100%;
   height: 64px;
+  padding: 15px;
   position: fixed;
   top: 0;
   left: 0;
@@ -16,7 +17,6 @@ export const HeaderList = styled.ul`
   display: flex;
   justify-content: flex-start;
   list-style: none;
-  padding-left: 60px;
   color: #fff;
 `;
 

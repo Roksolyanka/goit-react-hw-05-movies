@@ -2,9 +2,10 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const MovieDetailsContainer = styled.div`
-  padding-top: 80px;
-  padding-left: 60px;
-  background-image: url();
+  padding-top: 100px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
 `;
 
 export const LinkGoBack = styled(NavLink)`

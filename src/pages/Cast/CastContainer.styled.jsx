@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const CastContainer = styled.div`
-  padding-top: 60px;
-  padding-left: 60px;
+  padding: 15px;
 `;
 
 export const CastList = styled.ul`

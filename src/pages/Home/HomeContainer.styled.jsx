@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const HomeContainer = styled.div`
-  padding-top: 60px;
-  padding-left: 60px;
+  padding-top: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
 `;
 
 export const HomeTitle = styled.h1`
