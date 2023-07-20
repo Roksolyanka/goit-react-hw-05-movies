@@ -1,12 +1,15 @@
 import React, { Suspense } from 'react';
 import { MagnifyingGlass } from 'react-loader-spinner';
-import { Route, NavLink, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { Header, HeaderList, Link } from './HeaderContainer.styled';
 
-const Home = React.lazy(() => import('../pages/Home'));
+const Home = React.lazy(() => import('../pages/Home/Home'));
 const Movies = React.lazy(() => import('../pages/Movies'));
-const MovieDetails = React.lazy(() => import('../pages/MovieDetails'));
-const Cast = React.lazy(() => import('../pages/Cast'));
-const Reviews = React.lazy(() => import('../pages/Reviews'));
+const MovieDetails = React.lazy(() =>
+  import('../pages/MovieDetails/MovieDetails')
+);
+const Cast = React.lazy(() => import('../pages/Cast/Cast'));
+const Reviews = React.lazy(() => import('../pages/Reviews/Reviews'));
 const MovieSearchResult = React.lazy(() =>
   import('../pages/MovieSearchResult')
 );
@@ -14,18 +17,18 @@ const MovieSearchResult = React.lazy(() =>
 const App = () => {
   return (
     <div>
-      <header>
+      <Header>
         <nav>
-          <ul>
+          <HeaderList>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <NavLink to="/movies">Movies</NavLink>
+              <Link to="/movies">Movies</Link>
             </li>
-          </ul>
+          </HeaderList>
         </nav>
-      </header>
+      </Header>
       <Suspense
         fallback={
           <MagnifyingGlass
