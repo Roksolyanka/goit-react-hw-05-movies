@@ -7,6 +7,7 @@ import {
   ReviewsLink,
   ReviewsAuthor,
   ReviewsContent,
+  NoReviews,
 } from './ReviewsContainer.styled';
 
 const Reviews = () => {
@@ -34,7 +35,7 @@ const Reviews = () => {
           ))}
         </ReviewsList>
       ) : (
-        <p>We don't have any reviews for this movie.</p>
+        <NoReviews>We don't have any reviews for this movie.</NoReviews>
       )}
     </ReviewsContainer>
   );

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ReviewsContainer = styled.div`
-  padding-top: 60px;
+  padding-top: 20px;
   padding-left: 60px;
 `;
 
@@ -30,8 +30,8 @@ export const ReviewsContent = styled.p`
   color: rgba(3, 37, 65, 1);
 `;
 
-export const CastCharacter = styled.p`
-  margin-top: 0;
-  color: #fff;
-  font-size: 10px;
+export const NoReviews = styled.p`
+  color: rgba(3, 37, 65, 1);
+  font-weight: bold;
+  text-align: center;
 `;
