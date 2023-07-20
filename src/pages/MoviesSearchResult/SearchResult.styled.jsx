@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 
-export const HomeContainer = styled.div`
+export const SearchResultContainer = styled.div`
   padding: 15px;
 `;
 
-export const HomeTitle = styled.h1`
-  color: rgba(3, 37, 65, 1);
-`;
-
-export const HomeList = styled.ul`
+export const SearchResultList = styled.ul`
   display: flex;
   list-style: none;
   gap: 16px;
@@ -16,7 +12,7 @@ export const HomeList = styled.ul`
   justify-content: center;
 `;
 
-export const HomeLink = styled.li`
+export const SearchResultLink = styled.li`
   width: 224px;
   height: 325px;
   cursor: pointer;

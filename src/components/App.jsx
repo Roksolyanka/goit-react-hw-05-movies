@@ -4,14 +4,14 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { Header, HeaderList, Link } from './HeaderContainer.styled';
 
 const Home = React.lazy(() => import('../pages/Home/Home'));
-const Movies = React.lazy(() => import('../pages/Movies'));
+const Movies = React.lazy(() => import('../pages/Movies/Movies'));
 const MovieDetails = React.lazy(() =>
   import('../pages/MovieDetails/MovieDetails')
 );
 const Cast = React.lazy(() => import('../pages/Cast/Cast'));
 const Reviews = React.lazy(() => import('../pages/Reviews/Reviews'));
 const MovieSearchResult = React.lazy(() =>
-  import('../pages/MovieSearchResult')
+  import('../pages/MoviesSearchResult/MovieSearchResult')
 );
 
 const App = () => {

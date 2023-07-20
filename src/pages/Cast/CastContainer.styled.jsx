@@ -9,7 +9,7 @@ export const CastList = styled.ul`
   list-style: none;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
 `;
 
 export const CastLink = styled.li`
@@ -50,4 +50,10 @@ export const CastCharacter = styled.p`
   margin-top: 0;
   color: #fff;
   font-size: 10px;
+`;
+
+export const NoCast = styled.p`
+  color: rgba(3, 37, 65, 1);
+  font-weight: bold;
+  text-align: center;
 `;

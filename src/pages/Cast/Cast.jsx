@@ -9,6 +9,7 @@ import {
   CastInfo,
   CastName,
   CastCharacter,
+  NoCast,
 } from './CastContainer.styled';
 import photo from '../../images/nophoto.jpg';
 
@@ -49,7 +50,7 @@ const Cast = () => {
           ))}
         </CastList>
       ) : (
-        <p>We don't have any cast information for this movie.</p>
+        <NoCast>We don't have any cast information for this movie.</NoCast>
       )}
     </CastContainer>
   );

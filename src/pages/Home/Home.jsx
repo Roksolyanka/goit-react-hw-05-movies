@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchTrendingMovies } from 'services/api';
+import poster from '../../images/coming_soon_default.jpg';
 import {
   HomeContainer,
   HomeTitle,
@@ -21,6 +22,10 @@ const Home = () => {
     getMovies();
   }, []);
 
+  const getImageUrl = path => {
+    return path ? `https://image.tmdb.org/t/p/w200/${path}` : poster;
+  };
+
   return (
     <HomeContainer>
       <HomeTitle>Trending today</HomeTitle>
@@ -29,7 +34,7 @@ const Home = () => {
           <Link key={movie.id} to={`/movies/${movie.id}`}>
             <HomeLink>
               <Image
-                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                src={getImageUrl(movie.poster_path)}
                 alt={movie.title}
                 width={224}
                 height={325}

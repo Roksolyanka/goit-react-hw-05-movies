@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { fetchMovieSearch } from 'services/api';
+import poster from '../../images/coming_soon_default.jpg';
+import {
+  SearchResultContainer,
+  SearchResultList,
+  SearchResultLink,
+  Image,
+  MovieTitle,
+} from './SearchResult.styled';
 
 const MovieSearchResult = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -24,24 +32,34 @@ const MovieSearchResult = () => {
     getMovieSearch();
   }, [location.search]);
 
+  const getImageUrl = path => {
+    return path ? `https://image.tmdb.org/t/p/w200/${path}` : poster;
+  };
+
   return (
-    <div>
-      {searchResults.length > 0 ? (
-        <div>
-          <ul>
-            {searchResults.map(movie => (
-              <li key={movie.id}>
-                <Link state={{ from: location }} to={`/movies/${movie.id}`}>
-                  {movie.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>No movies found.</p>
-      )}
-    </div>
+    <SearchResultContainer>
+      <div>
+        <SearchResultList>
+          {searchResults.map(movie => (
+            <Link
+              key={movie.id}
+              state={{ from: location }}
+              to={`/movies/${movie.id}`}
+            >
+              <SearchResultLink>
+                <Image
+                  src={getImageUrl(movie.poster_path)}
+                  alt={movie.title}
+                  width={224}
+                  height={325}
+                />
+                <MovieTitle>{movie.title}</MovieTitle>
+              </SearchResultLink>
+            </Link>
+          ))}
+        </SearchResultList>
+      </div>
+    </SearchResultContainer>
   );
 };
 

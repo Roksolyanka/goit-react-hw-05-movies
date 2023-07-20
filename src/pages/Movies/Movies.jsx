@@ -1,8 +1,16 @@
 import { Suspense, lazy, useState } from 'react';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import { Route, Routes, useNavigate } from 'react-router-dom';
+import {
+  MoviesContainer,
+  MoviesForm,
+  MoviesButton,
+  MoviesInput,
+} from './MoviesContainer.styled';
 
-const MovieSearchResult = lazy(() => import('./MovieSearchResult'));
+const MovieSearchResult = lazy(() =>
+  import('../MoviesSearchResult/MovieSearchResult')
+);
 
 const Movies = () => {
   const [search, setSearch] = useState('');
@@ -19,22 +27,22 @@ const Movies = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSearch}>
-        <button type="submit">
+    <MoviesContainer>
+      <MoviesForm onSubmit={handleSearch}>
+        <MoviesButton type="submit">
           <label className="button-label">
             <i className="fa fa-search"></i>
           </label>
-        </button>
+        </MoviesButton>
 
-        <input
+        <MoviesInput
           type="text"
           autoFocus
           placeholder="Search movies"
           value={search}
           onChange={onChange}
         />
-      </form>
+      </MoviesForm>
       <Suspense
         fallback={
           <MagnifyingGlass
@@ -54,7 +62,7 @@ const Movies = () => {
           <Route path="search" element={<MovieSearchResult />} />
         </Routes>
       </Suspense>
-    </div>
+    </MoviesContainer>
   );
 };
 
@@ -71,9 +79,7 @@ export default Movies;
 
 /* <Link to={`/movies/${movie.id}`}>{movie.title}</Link> */
 
-
-      
-        /* {searchResults.length > 0 && (
+/* {searchResults.length > 0 && (
         <div>
           <ul>
             {searchResults.map(movie => (
@@ -86,4 +92,3 @@ export default Movies;
           </ul>
         </div>
       )} */
-      
