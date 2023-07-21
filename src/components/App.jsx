@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { Header, HeaderList, Link } from './HeaderContainer.styled';
+import { Loader } from 'pages/Loader/Loader';
 
 const Home = React.lazy(() => import('../pages/Home/Home'));
 const Movies = React.lazy(() => import('../pages/Movies/Movies'));
@@ -29,20 +29,7 @@ const App = () => {
           </HeaderList>
         </nav>
       </Header>
-      <Suspense
-        fallback={
-          <MagnifyingGlass
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="MagnifyingGlass-loading"
-            wrapperStyle={{}}
-            wrapperClass="MagnifyingGlass-wrapper"
-            glassColor="#c0efff"
-            color="#e15b64"
-          />
-        }
-      >
+      <Suspense fallback={<Loader></Loader>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/movies/*" element={<Movies />}>

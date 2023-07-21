@@ -1,7 +1,6 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { useParams, Routes, Route, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/api';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import {
   MovieDetailsContainer,
   LinkGoBack,
@@ -19,6 +18,7 @@ import {
   AdditionalInfoLink,
 } from './MovieDetailsContainer.styled';
 import poster from '../../images/coming_soon_default.jpg';
+import { Loader } from 'pages/Loader/Loader';
 
 const Cast = lazy(() => import('../Cast/Cast'));
 const Reviews = lazy(() => import('../Reviews/Reviews'));
@@ -43,7 +43,9 @@ const MovieDetails = () => {
   };
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return (
+      Loader
+    );
   }
 
   const getUserScore = score => {
@@ -102,20 +104,7 @@ const MovieDetails = () => {
           </MovieDetailsWrapper>
         </BackgroundMovie>
       )}
-      <Suspense
-        fallback={
-          <MagnifyingGlass
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="MagnifyingGlass-loading"
-            wrapperStyle={{}}
-            wrapperClass="MagnifyingGlass-wrapper"
-            glassColor="#c0efff"
-            color="#e15b64"
-          />
-        }
-      >
+      <Suspense fallback={<Loader></Loader>}>
         <Routes>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />

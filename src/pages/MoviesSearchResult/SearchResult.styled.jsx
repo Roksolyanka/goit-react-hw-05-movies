@@ -41,3 +41,9 @@ export const MovieTitle = styled.p`
   padding-right: 12px;
   color: #fff;
 `;
+
+export const NoMovies = styled.p`
+  color: rgba(3, 37, 65, 1);
+  font-weight: bold;
+  text-align: center;
+`;

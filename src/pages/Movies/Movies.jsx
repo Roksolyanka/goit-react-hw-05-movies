@@ -1,5 +1,4 @@
 import { Suspense, lazy, useState } from 'react';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import {
   MoviesContainer,
@@ -7,6 +6,7 @@ import {
   MoviesButton,
   MoviesInput,
 } from './MoviesContainer.styled';
+import { Loader } from 'pages/Loader/Loader';
 
 const MovieSearchResult = lazy(() =>
   import('../MoviesSearchResult/MovieSearchResult')
@@ -44,20 +44,7 @@ const Movies = () => {
           onChange={onChange}
         />
       </MoviesForm>
-      <Suspense
-        fallback={
-          <MagnifyingGlass
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="MagnifyingGlass-loading"
-            wrapperStyle={{}}
-            wrapperClass="MagnifyingGlass-wrapper"
-            glassColor="#c0efff"
-            color="#e15b64"
-          />
-        }
-      >
+      <Suspense fallback={<Loader></Loader>}>
         <Routes>
           <Route path="/" element={<MovieSearchResult />} />
           <Route path="search" element={<MovieSearchResult />} />
@@ -68,28 +55,3 @@ const Movies = () => {
 };
 
 export default Movies;
-
-/* <Link
-                  to={{
-                    pathname: `/movies/${movie.id}`,
-                    state: { from: location },
-                  }}
-                >
-                  {movie.title}
-                </Link> */
-
-/* <Link to={`/movies/${movie.id}`}>{movie.title}</Link> */
-
-/* {searchResults.length > 0 && (
-        <div>
-          <ul>
-            {searchResults.map(movie => (
-              <li key={movie.id}>
-                <Link state={{ from: location }} to={`/movies/${movie.id}`}>
-                  {movie.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )} */

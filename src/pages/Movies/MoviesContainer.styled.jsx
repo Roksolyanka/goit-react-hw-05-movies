@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const MoviesContainer = styled.div`
   padding: 15px;
-//   display: flex;
-//   justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MoviesForm = styled.form`
